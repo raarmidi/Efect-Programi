@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Filtre Efekti</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f1f1f1;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            max-width: 700px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .image-container {
+            margin-bottom: 20px;
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .file-input {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #1db954;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .file-input:hover {
+            background-color: #1a9634;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .filter-btn {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .filter-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .filter-btn:focus {
+            outline: none;
+        }
+
+        .filter-btn img {
+            width: 30px;
+            height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Instagram Filtre Efektleri</h1>
+        <input type="file" class="file-input" id="fileInput" accept="image/*">
+        <div class="image-container">
+            <img id="image" src="" alt="Upload your image">
+        </div>
+        <div class="filters">
+            <button class="filter-btn" id="filter-normal">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/PNG_Logo_for_Facebook.svg" alt="Normal">
+                Normal
+            </button>
+            <button class="filter-btn" id="filter-sepia">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Camera_icon_%28May_2013%29.svg" alt="Sepia">
+                Sepia
+            </button>
+            <button class="filter-btn" id="filter-grayscale">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Black_and_white_television.svg" alt="Grayscale">
+                Grayscale
+            </button>
+            <button class="filter-btn" id="filter-invert">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Invert_colors_icon.svg" alt="Invert">
+                Invert
+            </button>
+            <button class="filter-btn" id="filter-blur">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Photo_camera_icon.svg" alt="Blur">
+                Blur
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const image = document.getElementById('image');
+        const filterNormal = document.getElementById('filter-normal');
+        const filterSepia = document.getElementById('filter-sepia');
+        const filterGrayscale = document.getElementById('filter-grayscale');
+        const filterInvert = document.getElementById('filter-invert');
+        const filterBlur = document.getElementById('filter-blur');
+
+        // Handle image upload
+        fileInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    image.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Apply normal filter
+        filterNormal.addEventListener('click', function () {
+            image.style.filter = 'none';
+        });
+
+        // Apply sepia filter
+        filterSepia.addEventListener('click', function () {
+            image.style.filter = 'sepia(1)';
+        });
+
+        // Apply grayscale filter
+        filterGrayscale.addEventListener('click', function () {
+            image.style.filter = 'grayscale(1)';
+        });
+
+        // Apply invert filter
+        filterInvert.addEventListener('click', function () {
+            image.style.filter = 'invert(1)';
+        });
+
+        // Apply blur filter
+        filterBlur.addEventListener('click', function () {
+            image.style.filter = 'blur(5px)';
+        });
+    </script>
+
+</body>
+</html>
